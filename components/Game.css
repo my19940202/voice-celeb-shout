@@ -1,0 +1,100 @@
+.shiny-text {
+    color: #b5b5b5a4;
+    background: linear-gradient(120deg,
+            rgba(0, 0, 0, 0.2) 40%,
+            rgb(0, 0, 0) 50%,
+            rgba(0, 0, 0, 0.2) 60%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: -100%;
+    }
+}
+
+.shiny-text.disabled {
+    animation: none;
+}
+
+.letter-input {
+    @apply w-12 h-12 text-center text-xl font-bold rounded-lg border-2 focus:outline-none focus:ring-2 focus:ring-blue-500 uppercase;
+}
+
+/* 按钮基础样式 */
+#confetti-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 碎纸屑动画 */
+@keyframes confetti {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* 伪元素生成碎纸屑 */
+#confetti-button.animate-confetti::before,
+#confetti-button.animate-confetti::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    /* 红色 */
+    top: 0;
+    left: 50%;
+    animation: confetti 1s ease-out forwards;
+}
+
+#confetti-button.animate-confetti::after {
+    background-color: #00ff00;
+    /* 绿色 */
+    left: 60%;
+    animation-delay: 0.2s;
+}
+
+/* 更多碎纸屑 */
+#confetti-button.animate-confetti::before {
+    background-color: #ffcc00;
+    /* 黄色 */
+    left: 40%;
+    animation-delay: 0.4s;
+}
+
+/* 动态生成更多碎纸屑 */
+#confetti-button.animate-confetti::nth-child(3) {
+    background-color: #0099ff;
+    /* 蓝色 */
+    left: 30%;
+    animation-delay: 0.6s;
+}
+
+#confetti-button.animate-confetti::nth-child(4) {
+    background-color: #ff00ff;
+    /* 紫色 */
+    left: 70%;
+    animation-delay: 0.8s;
+}
